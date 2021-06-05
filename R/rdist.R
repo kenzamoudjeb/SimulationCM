@@ -1,14 +1,9 @@
-#' simulation d une loi discrete
-#' @export
-#' @param x numeric vector representing the values of the random variable
-#' @param p numeric vector representing the probabilities
-#' @param n number of iteration
 rdist<-function(x,p)
 {
   n=length(p)
   r=runif(1)
   b=p[1];
-  if((r>0)&(r<=b))
+  if((r>=0) & (r<=b))
   {
     y=x[1]
     return(y)
@@ -19,7 +14,7 @@ rdist<-function(x,p)
     b=b+p[2]
     for(i in 2:n)
     {
-      if((r>=a)&(r<=b))
+      if((r>=a) & (r <=b))
       {
         y=x[i]
         return(y)
@@ -35,24 +30,3 @@ rdist<-function(x,p)
     return(y)
   }
 }
-
-
-kdistk<-function(x,p,n)
-{
-  w<-c(1:n)
-  for(j in 1:n) {
-    y=rdist(x,p)
-  w[j]<- y
-  
-}
-return(w)
-}
-fct<-function(x)
-{
- par(mfrow=c(1,3))
- hist(x,col=rainbow(10))
- boxplot(x,col='red')
- par(mfrow=c(2,2))
- data.frame( min=min(x), max=max(x), median=median(x), mean= mean(x))
- }
- 
