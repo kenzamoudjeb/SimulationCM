@@ -1,0 +1,23 @@
+rdistk<-function(x,p,k=100)
+  
+{ 
+  m<-c(1:k)
+  for(j in 1:k )
+  {  
+    l=rdist(x,p)
+    m[j]<- l
+    
+  }
+  return(m)
+}
+statdisct<-function(x,p,k)
+{
+p=rdistk(x,p,k)
+plot( p,col="yellow", main = "le nuage de point ")
+hist(p,col=rainbow(10))
+boxplot(p,col='yellow')
+par(mfrow=c(2,2))
+data.frame(moyenne=mean(p),med=median(p),var=var(p),ecart=sd(p),max=max(p),min=min(p))
+
+
+}
